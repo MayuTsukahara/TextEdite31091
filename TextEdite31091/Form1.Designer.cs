@@ -57,6 +57,7 @@
             // 
             // ofdFileOpen
             // 
+            this.ofdFileOpen.DefaultExt = "rtf";
             this.ofdFileOpen.Filter = "ファイル|*.rtf|すべてのファイル|*.*";
             // 
             // sfdFileSave

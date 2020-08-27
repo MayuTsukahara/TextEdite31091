@@ -66,9 +66,7 @@ namespace TextEdite31091 {
                     //「はい」が選択された時
                     SaveToolStripMenuItem_Click(sender,e);
                 }
-                
             }
-            
         }
 
         //終了
@@ -81,8 +79,9 @@ namespace TextEdite31091 {
             saveErrorCheck(sender,e);
             if (ofdFileOpen.ShowDialog() == DialogResult.OK) {
                 try {
-                    fileName = ofdFileOpen.FileName;
                     rtTextArea.LoadFile(@ofdFileOpen.FileName);
+                    fileName = ofdFileOpen.FileName;
+                    this.Text = "TextEditor   " +fileName;
                 } catch (Exception) { }
             }
         }
@@ -93,6 +92,8 @@ namespace TextEdite31091 {
                 try{
                     fileName = sfdFileSave.FileName;
                     rtTextArea.SaveFile(@sfdFileSave.FileName, RichTextBoxStreamType.RichText);
+                    fileName = sfdFileSave.FileName;
+                    this.Text = "TextEditor   " + fileName;
                     saveCheck = true;
                 }
                 catch(Exception){ };
@@ -113,7 +114,9 @@ namespace TextEdite31091 {
         //新規作成
         private void NewNToolStripMenuItem_Click(object sender, EventArgs e) {
             saveErrorCheck(sender,e);
+
             fileName = "";
+            this.Text = "TextEditor   " + fileName;
             rtTextArea.Clear();
         }
         //テキストの色
@@ -167,11 +170,11 @@ namespace TextEdite31091 {
         private void ヘルプHToolStripMenuItem_Click(object sender, EventArgs e) {
             init_button();
         }
+        //---------------------------------------------------------------------------------
 
         //キーボード押して離すと未保存になる
         private void rtTextArea_KeyPress(object sender, KeyPressEventArgs e) {
             saveCheck = false;
         }
-        //---------------------------------------------------------------------------------
     }
 }
