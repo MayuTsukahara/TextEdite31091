@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Configuration;
 using System.Data;
 using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Linq.Expressions;
+using System.Runtime.Remoting.Channels;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -13,7 +15,10 @@ using System.Windows.Forms;
 namespace TextEdite31091 {
     public partial class Form1 : Form {
         //上書き保存用ファイル名
-        private string fileName = "";     //Camel形式　(⇔　Pascal形式)
+        private string fileName = "";     //Camel形式　(⇔　Pascal形式）
+        //未保存か否か
+        private bool saveCheck = true;
+        
         public Form1() {
             InitializeComponent();
         }
@@ -24,7 +29,7 @@ namespace TextEdite31091 {
         //機能の無効有効
         private void init_button() {
             //上書き
-            if(fileName != "") {
+            if(fileName != "" && saveCheck == false) {
                 SaveToolStripMenuItem.Enabled = true;
             } else {
                 SaveToolStripMenuItem.Enabled = false;
@@ -54,16 +59,29 @@ namespace TextEdite31091 {
                 PastePToolStripMenuItem.Enabled = false;
             }
         }
+        private void saveErrorCheck(object sender, EventArgs e) {
+            if (saveCheck == false) {
+                DialogResult result = MessageBox.Show("保存していませんが、保存しますかー？？", "警告！", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Error);
+                if (result == DialogResult.Yes) {
+                    //「はい」が選択された時
+                    SaveToolStripMenuItem_Click(sender,e);
+                }
+                
+            }
+            
+        }
 
         //終了
         private void ExitXToolStripMenuItem_Click(object sender, EventArgs e) {
+            saveErrorCheck(sender,e);
             Application.Exit();
         }
         //開く
         private void OpenOToolStripMenuItem_Click(object sender, EventArgs e) {
+            saveErrorCheck(sender,e);
             if (ofdFileOpen.ShowDialog() == DialogResult.OK) {
-                fileName = ofdFileOpen.FileName;
                 try {
+                    fileName = ofdFileOpen.FileName;
                     rtTextArea.LoadFile(@ofdFileOpen.FileName);
                 } catch (Exception) { }
             }
@@ -75,6 +93,7 @@ namespace TextEdite31091 {
                 try{
                     fileName = sfdFileSave.FileName;
                     rtTextArea.SaveFile(@sfdFileSave.FileName, RichTextBoxStreamType.RichText);
+                    saveCheck = true;
                 }
                 catch(Exception){ };
             }
@@ -85,6 +104,7 @@ namespace TextEdite31091 {
             if (fileName != "") {
                 try {
                     rtTextArea.SaveFile(fileName, RichTextBoxStreamType.RichText);
+                    saveCheck = true;
                 } catch (Exception) { };
             } else {
                 SaveAToolStripMenuItem_Click(sender,e); 
@@ -92,6 +112,7 @@ namespace TextEdite31091 {
         }
         //新規作成
         private void NewNToolStripMenuItem_Click(object sender, EventArgs e) {
+            saveErrorCheck(sender,e);
             fileName = "";
             rtTextArea.Clear();
         }
@@ -145,6 +166,11 @@ namespace TextEdite31091 {
         }
         private void ヘルプHToolStripMenuItem_Click(object sender, EventArgs e) {
             init_button();
+        }
+
+        //キーボード押して離すと未保存になる
+        private void rtTextArea_KeyPress(object sender, KeyPressEventArgs e) {
+            saveCheck = false;
         }
         //---------------------------------------------------------------------------------
     }
