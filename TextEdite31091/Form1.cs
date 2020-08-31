@@ -176,5 +176,12 @@ namespace TextEdite31091 {
         private void rtTextArea_KeyPress(object sender, KeyPressEventArgs e) {
             saveCheck = false;
         }
+
+        //バージョン情報
+        private void VersionToolStripMenuItem_Click(object sender, EventArgs e) {
+            //VersionForm versionForm = new VersionForm();
+            //versionForm.Show();   //モーダルダイアログとして表示
+            VersionForm.GetInstance().Show();
+        }
     }
 }

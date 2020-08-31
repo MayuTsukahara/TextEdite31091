@@ -47,7 +47,8 @@
             this.FontToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.文字コードCToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.ヘルプHToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.HelpHToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.VersionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ヘルプの表示ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.rtTextArea = new System.Windows.Forms.RichTextBox();
             this.cdTextColor = new System.Windows.Forms.ColorDialog();
@@ -71,7 +72,7 @@
             this.FileFToolStripMenuItem,
             this.EditEToolStripMenuItem,
             this.文字コードCToolStripMenuItem,
-            this.ヘルプHToolStripMenuItem});
+            this.HelpHToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(1008, 24);
@@ -250,14 +251,22 @@
             this.toolStripMenuItem1.Size = new System.Drawing.Size(179, 22);
             this.toolStripMenuItem1.Text = "toolStripMenuItem1";
             // 
-            // ヘルプHToolStripMenuItem
+            // HelpHToolStripMenuItem
             // 
-            this.ヘルプHToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.HelpHToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.VersionToolStripMenuItem,
             this.ヘルプの表示ToolStripMenuItem});
-            this.ヘルプHToolStripMenuItem.Name = "ヘルプHToolStripMenuItem";
-            this.ヘルプHToolStripMenuItem.Size = new System.Drawing.Size(65, 20);
-            this.ヘルプHToolStripMenuItem.Text = "ヘルプ(&H)";
-            this.ヘルプHToolStripMenuItem.Click += new System.EventHandler(this.ヘルプHToolStripMenuItem_Click);
+            this.HelpHToolStripMenuItem.Name = "HelpHToolStripMenuItem";
+            this.HelpHToolStripMenuItem.Size = new System.Drawing.Size(65, 20);
+            this.HelpHToolStripMenuItem.Text = "ヘルプ(&H)";
+            this.HelpHToolStripMenuItem.Click += new System.EventHandler(this.ヘルプHToolStripMenuItem_Click);
+            // 
+            // VersionToolStripMenuItem
+            // 
+            this.VersionToolStripMenuItem.Name = "VersionToolStripMenuItem";
+            this.VersionToolStripMenuItem.Size = new System.Drawing.Size(197, 22);
+            this.VersionToolStripMenuItem.Text = "バージョン情報...";
+            this.VersionToolStripMenuItem.Click += new System.EventHandler(this.VersionToolStripMenuItem_Click);
             // 
             // ヘルプの表示ToolStripMenuItem
             // 
@@ -313,7 +322,7 @@
         private System.Windows.Forms.RichTextBox rtTextArea;
         private System.Windows.Forms.ToolStripMenuItem EditEToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 文字コードCToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem ヘルプHToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem HelpHToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem UndoUToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem RedoRToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
@@ -328,6 +337,7 @@
         private System.Windows.Forms.FontDialog fdTextFont;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem ヘルプの表示ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem VersionToolStripMenuItem;
     }
 }
 
